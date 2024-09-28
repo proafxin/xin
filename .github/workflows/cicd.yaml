@@ -32,5 +32,6 @@ jobs:
 
       - name: Run Tox
         run: |
-          python -m pip install -U tox
-          tox
+          uv tool install tox --with tox-uv
+          uv sync --all-extras --dev
+          tox -p
