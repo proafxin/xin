@@ -1036,11 +1036,13 @@ docs = [
     { name = "furo" },
     { name = "sphinx" },
 ]
+formatting = [
+    { name = "pre-commit" },
+]
 
 [package.dev-dependencies]
 dev = [
     { name = "coverage" },
-    { name = "pre-commit" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
 ]
@@ -1054,6 +1056,7 @@ requires-dist = [
     { name = "mypy", specifier = ">=1.11.2" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "polars", specifier = ">=1.8.2" },
+    { name = "pre-commit", marker = "extra == 'formatting'", specifier = ">=3.8.0" },
     { name = "pydantic", specifier = ">=2.9.2" },
     { name = "pymssql", specifier = ">=2.3.1" },
     { name = "sphinx", marker = "extra == 'docs'", specifier = ">=8.0.2" },
@@ -1063,7 +1066,6 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "coverage", specifier = ">=7.6.1" },
-    { name = "pre-commit", specifier = ">=3.8.0" },
     { name = "pytest", specifier = ">=8.3.3" },
     { name = "pytest-asyncio", specifier = ">=0.24.0" },
 ]
