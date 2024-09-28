@@ -1,6 +1,6 @@
 # Xin
 
-One Unified ORM Wrapper to Rule Them All.
+One ORM Wrapper to Rule Them All.
 
 ## Databases Supported
 

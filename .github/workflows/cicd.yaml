@@ -1,0 +1,39 @@
+name: Build, Test and Publish
+
+permissions: read-all
+
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+
+
+jobs:
+  uv-example:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.11", "3.12"]
+    name: python
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "0.4.17"
+          enable-cache: true
+          # cache-local-path: ".cache"
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
+      - name: Run tests
+        run: uv run pytest tests

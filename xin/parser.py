@@ -2,4 +2,4 @@ from pydantic import BaseModel
 
 
 class Base(BaseModel):
-    pass
+    """All models must be a pydantic model."""

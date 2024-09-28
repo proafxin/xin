@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class SQLDatabaseDialect(str, Enum):
+    """SQL database flavors."""
+
     MYSQL = "mysql"
     POSTGRESQL = "postgresql"
     SQLSERVER = "mssql"
