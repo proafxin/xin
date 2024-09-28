@@ -32,8 +32,8 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
 
-      - name: Install the project
-        run: uv sync --all-extras --dev
+      # - name: Install the project
+      #   run: uv sync --all-extras --dev
 
       - name: Run Tox
         run: |
