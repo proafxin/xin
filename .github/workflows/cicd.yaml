@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  uv-example:
+  build_test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
