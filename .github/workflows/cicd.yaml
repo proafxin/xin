@@ -33,4 +33,5 @@ jobs:
       - name: Run Tox
         run: |
           uv tool install tox --with tox-uv
+          uv sync --all-extras --dev
           tox -p
