@@ -11,7 +11,7 @@ build:
     - python3 -m pip install -U pip
     - python3 -m pip install -U uv
     post_install:
-    - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv sync
+    - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras
 
 sphinx:
   configuration: docs/source/conf.py
