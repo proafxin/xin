@@ -1,6 +1,6 @@
 # Xin
 
-One ORM Wrapper to Rule Them All.
+One ORM Wrapper to Rule Them All. Use pydantic to deal with database transactions.
 
 ## Databases Supported
 
