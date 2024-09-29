@@ -16,7 +16,7 @@ async def mysql_engine() -> AsyncGenerator[AsyncEngine, None]:
         port=int(os.environ["MYSQL_PORT"]),
         dialect=SQLDatabaseDialect.MYSQL,
         host="localhost",
-        dbname="xin",
+        dbname=os.environ["MYSQL_DBNAME"],
     )
 
     yield engine
@@ -31,7 +31,7 @@ async def postgres_engine() -> AsyncGenerator[AsyncEngine, None]:
         port=int(os.environ["POSTGRESQL_PORT"]),
         dialect=SQLDatabaseDialect.POSTGRESQL,
         host="localhost",
-        dbname="xin",
+        dbname="postgres",
     )
 
     yield engine

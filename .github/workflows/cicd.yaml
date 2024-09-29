@@ -48,7 +48,7 @@ jobs:
 
       - uses: adambirds/docker-compose-action@main
         with:
-          compose-file: compose.yml
+          compose-file: compose.yaml
 
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
