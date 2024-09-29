@@ -1,5 +1,8 @@
 from enum import Enum
 
+from sqlalchemy.engine import Engine, create_engine
+from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
+
 
 class SQLDatabaseDialect(str, Enum):
     """SQL database flavors."""
@@ -32,3 +35,28 @@ SQL_DRIVERS = {
 }
 
 NOSQL_DRIVERS = {NoSQLDatabaseDialect.MONGODB.value: NoSQLDatabaseDriver.MOTOR.value}
+
+
+def create_connection_string(
+    user: str, password: str, port: int, dialect: SQLDatabaseDialect, host: str, dbname: str
+) -> str:
+    dbinfo = dialect.value
+    if dbinfo in SQL_DRIVERS:
+        dbinfo = f"{dbinfo}+{SQL_DRIVERS[dialect]}"
+
+    connection_string = f"{dbinfo}://{user}:{password}@{host}:{port}/{dbname}"
+
+    return connection_string
+
+
+async def async_sql_engine(
+    user: str, password: str, port: int, dialect: SQLDatabaseDialect, host: str, dbname: str
+) -> AsyncEngine:
+    url = create_connection_string(user=user, password=password, port=port, dialect=dialect, host=host, dbname=dbname)
+    return create_async_engine(url=url)
+
+
+def sync_sql_engine(user: str, password: str, port: int, dialect: SQLDatabaseDialect, host: str, dbname: str) -> Engine:
+    url = create_connection_string(user=user, password=password, port=port, dialect=dialect, host=host, dbname=dbname)
+
+    return create_engine(url=url)
