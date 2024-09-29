@@ -13,7 +13,7 @@ build:
   - uv sync --all-extras
   # - cd docs
   # - uv run sphinx-apidoc -f -o source/ ../ ../tests/
-  - .venv/bin/python -m sphinx -T -b html -d docs/_build/doctrees -D language=en docs $READTHEDOCS_OUTPUT/html
+  - .venv/bin/python -m sphinx -T -b html -d docs/build/doctrees -D language=en docs/source $READTHEDOCS_OUTPUT/html
 
   # jobs:
   #   post_create_environment:
