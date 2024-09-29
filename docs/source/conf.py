@@ -8,9 +8,10 @@
 
 import sys
 import tomllib
+from datetime import datetime
 from os.path import abspath, dirname, join
 
-from pydantic import BaseModel, RootModel
+from pydantic import BaseModel, RootModel, TypeAdapter
 
 cwd = dirname(abspath(__file__))
 root = join(cwd, "../..")
@@ -24,11 +25,11 @@ class Author(BaseModel):
     name: str
     email: str
 
-    def __repr__(self) -> str:
-        return f"{self.name}, <{self.email}>"
+    def __str__(self) -> str:
+        return f"{self.name} <{self.email}>"
 
 
-Authors = RootModel(root=Author)
+Authors = RootModel(list[Author])
 
 with open(toml_file, "rb") as f:
     data = tomllib.load(f)
@@ -42,14 +43,18 @@ with open(toml_file, "rb") as f:
 
     if "authors" not in project:
         raise ValueError("`author` not in project")
-    authors = ", ".join([str(author) for author in Authors.model_validate(project["authors"])])
+    ta = TypeAdapter(list[Author])
+    authors = ta.validate_python(project["authors"])
+    name = project["name"]
 
 
 release = version
 
-project = "Pandas Extras"
-copyright = "2023, Masum Billal"
-author = "Masum Billal"
+project = name.capitalize()
+author = ", ".join([str(author) for author in authors])
+print(author)
+copyright = f"{datetime.now().year}, {author}"
+print(copyright)
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
