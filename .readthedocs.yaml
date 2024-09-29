@@ -11,7 +11,7 @@ build:
   - asdf global uv latest
   - uv venv
   - uv sync --all-extras
-  - cd docs
+  # - cd docs
   # - uv run sphinx-apidoc -f -o source/ ../ ../tests/
   - .venv/bin/python -m sphinx -T -b html -d docs/_build/doctrees -D language=en docs $READTHEDOCS_OUTPUT/html
 
