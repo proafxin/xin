@@ -17,6 +17,7 @@ dependencies = [
     "cryptography>=43.0.1",
 ]
 license = { file = "LICENSE" }
+authors = [{name="Masum Billal", email="billalmasum93@gmail.com"}]
 
 [project.optional-dependencies]
 docs = [
