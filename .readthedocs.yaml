@@ -11,18 +11,7 @@ build:
   - asdf global uv latest
   - uv venv
   - uv sync --all-extras
-  # - cd docs
-  # - uv run sphinx-apidoc -f -o source/ ../ ../tests/
   - .venv/bin/python -m sphinx -T -b html -d docs/build/doctrees -D language=en docs/source $READTHEDOCS_OUTPUT/html
-
-  # jobs:
-  #   post_create_environment:
-  #   - python3 -m pip install -U pip
-  #   - python3 -m pip install -U uv
-  #   - uv venv
-  #   - uv sync --all-extras
-  #   post_install:
-  #   - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras
 
 sphinx:
   configuration: docs/source/conf.py
