@@ -10,6 +10,7 @@ build:
     post_create_environment:
     - python3 -m pip install -U pip
     - curl -LsSf https://astral.sh/uv/install.sh | sh
+    - source $HOME/.cargo/env
     post_install:
     - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras
 
