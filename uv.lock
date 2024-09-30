@@ -501,6 +501,19 @@ wheels = [
 ]
 
 [[package]]
+name = "pandas-stubs"
+version = "2.2.2.240909"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "types-pytz" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/39/d9/0682716a9ba539b78748f026c523ae5f280fc478381f7f1c6c037d0f0fc3/pandas_stubs-2.2.2.240909.tar.gz", hash = "sha256:3c0951a2c3e45e3475aed9d80b7147ae82f176b9e42e9fb321cfdebf3d411b3d", size = 103599 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/06/2d/68d58d819798b466e16c01ca934deada2f9165fb3d062f83abbef2f8067e/pandas_stubs-2.2.2.240909-py3-none-any.whl", hash = "sha256:e230f5fa4065f9417804f4d65cd98f86c002efcc07933e8abcd48c3fad9c30a2", size = 157811 },
+]
+
+[[package]]
 name = "platformdirs"
 version = "4.3.6"
 source = { registry = "https://pypi.org/simple" }
@@ -910,6 +923,15 @@ wheels = [
 ]
 
 [[package]]
+name = "types-pytz"
+version = "2024.2.0.20240913"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/da/cf/a4811b07d7309d9eecf0f383ca5747ce90f8a0d860acb2050bc57f3c9379/types-pytz-2024.2.0.20240913.tar.gz", hash = "sha256:4433b5df4a6fc587bbed41716d86a5ba5d832b4378e506f40d34bc9c81df2c24", size = 5462 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b6/a6/8846372f55c6bb470ff7207e4dc601017e264e5fe7d79a441ece3545b36c/types_pytz-2024.2.0.20240913-py3-none-any.whl", hash = "sha256:a1eebf57ebc6e127a99d2fa2ba0a88d2b173784ef9b3defcc2004ab6855a44df", size = 5251 },
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 source = { registry = "https://pypi.org/simple" }
@@ -961,6 +983,7 @@ dependencies = [
     { name = "motor" },
     { name = "mypy" },
     { name = "pandas" },
+    { name = "pandas-stubs" },
     { name = "polars" },
     { name = "pydantic" },
     { name = "pymssql" },
@@ -991,6 +1014,7 @@ requires-dist = [
     { name = "motor", specifier = ">=3.6.0" },
     { name = "mypy", specifier = ">=1.11.2" },
     { name = "pandas", specifier = ">=2.2.3" },
+    { name = "pandas-stubs", specifier = ">=2.2.2.240909" },
     { name = "polars", specifier = ">=1.8.2" },
     { name = "pre-commit", marker = "extra == 'formatting'", specifier = ">=3.8.0" },
     { name = "pydantic", specifier = ">=2.9.2" },

@@ -1,4 +1,4 @@
-from polars import DataFrame
+from pandas import DataFrame
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 from sqlalchemy.ext.asyncio import AsyncEngine

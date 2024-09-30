@@ -15,6 +15,7 @@ dependencies = [
     "polars>=1.8.2",
     "pandas>=2.2.3",
     "cryptography>=43.0.1",
+    "pandas-stubs>=2.2.2.240909",
 ]
 license = { file = "LICENSE" }
 authors = [{name="Masum Billal", email="billalmasum93@gmail.com"}]
