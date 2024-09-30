@@ -20,3 +20,6 @@ async def test_serialize_pandas_table() -> None:
     pydantic_objects = await serialize_table_pandas(table_name="some_table", data=DataFrame(data=[data1, data2]))
 
     assert isinstance(pydantic_objects, list)
+    for entry in pydantic_objects:
+        assert isinstance(entry, BaseModel)
+        assert len(entry.model_fields.keys()) >= 5
