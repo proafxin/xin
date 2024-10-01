@@ -16,6 +16,7 @@ dependencies = [
     "pandas>=2.2.3",
     "cryptography>=43.0.1",
     "pandas-stubs>=2.2.2.240909",
+    "pyarrow>=17.0.0",
 ]
 license = { file = "LICENSE" }
 authors = [{name="Masum Billal", email="billalmasum93@gmail.com"}]

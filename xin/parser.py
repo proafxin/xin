@@ -1,5 +1,4 @@
 from datetime import datetime
-from enum import Enum, auto
 from typing import Any, Type
 
 import numpy as np
@@ -16,9 +15,11 @@ class QueryResult(Base):
     table_name: str
 
 
-class DataFrameBackend(Enum):
-    PANDAS = auto()
-    POLARS = auto()
+async def flatten(data: pd.DataFrame | pl.DataFrame, depth: int) -> pl.DataFrame:
+    if isinstance(data, pd.DataFrame):
+        data = pl.from_pandas(data=data)
+
+    return pl.json_normalize(data=data.to_dicts(), max_level=depth)
 
 
 async def _serialize_table_pandas(table_name: str, data: pd.DataFrame) -> list[BaseModel]:
@@ -60,9 +61,7 @@ async def _serialize_table_polars(table_name: str, data: pl.DataFrame) -> list[B
     return []
 
 
-async def serialize_table(
-    table_name: str, data: pd.DataFrame | pl.DataFrame, backend: DataFrameBackend = DataFrameBackend.PANDAS
-) -> list[BaseModel]:
+async def serialize_table(table_name: str, data: pd.DataFrame | pl.DataFrame) -> list[BaseModel]:
     if isinstance(data, pd.DataFrame):
         return await _serialize_table_pandas(table_name=table_name, data=data)
 
