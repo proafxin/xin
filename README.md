@@ -11,7 +11,7 @@ A pydantic powered universal ORM wrapper for databases.
 
 * Execute queries on a database.
 * Read a database table as a dataframe.
-* Write a dataframe to a database table.
+* Write a dataframe to a database table (still under development).
 * Flatten and normalize a dataframe with nested structure.
 * Serialize a dataframe as a list of pydantic models.
 * Deserialize a list of pydantic models as a dataframe.
