@@ -4,6 +4,7 @@ A pydantic powered universal ORM wrapper for databases.
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proafxin/xin/develop.svg)](https://results.pre-commit.ci/latest/github/proafxin/xin/develop)
 [![Build, Test and Publish](https://github.com/proafxin/xin/actions/workflows/cicd.yaml/badge.svg)](https://github.com/proafxin/xin/actions/workflows/cicd.yaml)
+[![codecov](https://codecov.io/gh/proafxin/xin/graph/badge.svg?token=p2cOg8tQMb)](https://codecov.io/gh/proafxin/xin)
 [![Documentation Status](https://readthedocs.org/projects/xin/badge/?version=latest)](https://xin.readthedocs.io/en/latest/?badge=latest)
 
 ## Features
