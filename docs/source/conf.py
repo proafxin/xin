@@ -52,9 +52,7 @@ release = version
 
 project = name.capitalize()
 author = ", ".join([str(author) for author in authors])
-print(author)
 copyright = f"{datetime.now().year}, {author}"
-print(copyright)
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

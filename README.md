@@ -15,7 +15,7 @@ A pydantic powered universal ORM wrapper for databases.
 * Serialize a dataframe as a list of pydantic models.
 * Deserialize a list of pydantic models as a dataframe.
 
-The primary backend for parsing dataframes is [polars](https://pola.rs/) due to it's superior performance. `Xin` supports pandas dataframes as well, however, they are internally converted to polars dataframes first to not compromise performance.
+The primary backend for parsing dataframes is [polars](https://pola.rs/) due to it's superior [performance](https://pola.rs/_astro/perf-illustration.jHjw6PiD_165TDG.svg). `Xin` supports pandas dataframes as well, however, they are internally converted to polars dataframes first to not compromise performance.
 
 The backend  for interacting with SQL databases is [sqlalchemy](https://www.sqlalchemy.org/) because it supports async features and is the de-facto standard for communicating with SQL databases.
 
@@ -28,9 +28,11 @@ The backend  for interacting with SQL databases is [sqlalchemy](https://www.sqla
 
 ## Async Drivers Supported
 
+`Xin` is async first. It means that if an async driver is available for a database dialect, it will leverage the async driver for better performance when  applicable. SQL Server driver PyMSSQL does not have an async variation yet.
+
 * Motor for Mongodb
 * Asyncpg for PostgreSQL
-* AioSQL for MySQL
+* AioMySQL for MySQL
 
 ## Plan for Future Database Support
 

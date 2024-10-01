@@ -5,26 +5,45 @@ import polars as pl
 import pytest
 from pydantic import BaseModel
 
-from xin.parser import deserialize_pydantic_objects, flatten, serialize_table
+from xin.parser import camel_case, deserialize_pydantic_objects, flatten, serialize_table
+
+
+@pytest.mark.asyncio
+async def test_camel_case() -> None:
+    assert await camel_case(name="polars_table") == "PolarsTable"
+    assert await camel_case(name="some_random.model") == "SomeRandomModel"
 
 
 @pytest.mark.asyncio
 async def test_serialize_pandas_table() -> None:
     now = datetime.now()
-    data1 = {"n": "xin", "id": 200, "f": ["a", "b", "c"], "c": now, "b": 20.0, "d": {"a": 1}}
-    data2 = {"n": "xin", "id": 200, "f": ["d", "e", "f"], "c": now, "b": None, "d": {"a": 1}}
+    data1 = {"n": "xin", "id": 200, "f": ["a", "b", "c"], "c": now, "b": 20.0, "d": {"a": 1}, "e": [[1]]}
+    data2 = {"n": "xin", "id": 200, "f": ["d", "e", "f"], "c": now, "b": None, "d": {"a": 1}, "e": [[2]]}
 
     pydantic_objects = await serialize_table(table_name="some_table", data=pd.DataFrame(data=[data1, data2]))
 
     assert isinstance(pydantic_objects, list)
     for entry in pydantic_objects:
+        assert entry.__class__.__name__ == "SomeTable"
         assert isinstance(entry, BaseModel)
         assert len(entry.model_fields.keys()) >= 5
 
 
 @pytest.mark.asyncio
 async def test_serialize_polars_table() -> None:
-    pass
+    now = datetime.now()
+    data1 = {"n": "xin", "id": 200, "f": ["a", "b", "c"], "c": now, "b": 20.0, "d": {"a": 1}, "e": [1], "d2": [now]}
+    data2 = {"n": "xin", "id": 200, "f": ["d", "e", "f"], "c": now, "b": None, "d": {"a": 1}, "g": [2.0]}
+
+    df = pl.DataFrame([data1, data2])
+
+    pydantic_objects = await serialize_table(table_name="polars_table", data=df)
+
+    assert isinstance(pydantic_objects, list)
+    for entry in pydantic_objects:
+        assert entry.__class__.__name__ == "PolarsTable"
+        assert isinstance(entry, BaseModel)
+        assert len(entry.model_fields.keys()) >= 5
 
 
 @pytest.mark.asyncio
