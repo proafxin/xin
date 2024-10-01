@@ -24,6 +24,7 @@ authors = [{name="Masum Billal", email="billalmasum93@gmail.com"}]
 [project.optional-dependencies]
 docs = [
     "furo>=2024.8.6",
+    "pydata-sphinx-theme>=0.15.4",
     "sphinx>=8.0.2",
 ]
 formatting = [

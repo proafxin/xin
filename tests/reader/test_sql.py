@@ -1,5 +1,5 @@
 import pytest
-from pandas import DataFrame
+from polars import DataFrame
 from sqlalchemy.engine import Engine
 from sqlalchemy.ext.asyncio import AsyncEngine
 
