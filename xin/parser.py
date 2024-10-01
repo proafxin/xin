@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Type
+from typing import Any, Sequence, Type
 
 import numpy as np
 import pandas as pd
@@ -7,12 +7,10 @@ import polars as pl
 from pydantic import BaseModel, TypeAdapter, create_model
 
 
-class Base(BaseModel):
-    """All models must be a pydantic model."""
+async def deserialize_pydantic_objects(models: Sequence[BaseModel]) -> pl.DataFrame:
+    data = [model.model_dump() for model in models]
 
-
-class QueryResult(Base):
-    table_name: str
+    return pl.DataFrame(data=data)
 
 
 async def flatten(data: pd.DataFrame | pl.DataFrame, depth: int) -> pl.DataFrame:

@@ -5,12 +5,7 @@ import polars as pl
 import pytest
 from pydantic import BaseModel
 
-from xin.parser import Base, flatten, serialize_table
-
-
-@pytest.mark.asyncio
-async def test_base() -> None:
-    assert isinstance(Base(), BaseModel)
+from xin.parser import deserialize_pydantic_objects, flatten, serialize_table
 
 
 @pytest.mark.asyncio
@@ -58,7 +53,28 @@ async def test_flatten() -> None:
     flat_df = await flatten(data=df_polars, depth=0)
     assert isinstance(flat_df, pl.DataFrame)
     assert flat_df.shape[1] == df_polars.shape[1]
+    for col in flat_df.columns:
+        assert col in df_polars.columns
+    for col in df_polars.columns:
+        assert col in flat_df.columns
 
     flat_df = await flatten(data=df_polars, depth=1)
     assert isinstance(flat_df, pl.DataFrame)
     assert flat_df.shape[1] == df_polars.shape[1] + 1
+    assert "fitness" not in flat_df.columns
+    assert "fitness.height" in flat_df.columns
+    assert "fitness.weight" in flat_df.columns
+
+
+@pytest.mark.asyncio
+async def test_deserialize_models() -> None:
+    class DummyModel(BaseModel):
+        x: int
+        y: float
+
+    models = [DummyModel(x=1, y=2.0), DummyModel(x=10, y=-1.9)]
+    df = await deserialize_pydantic_objects(models=models)
+
+    assert isinstance(df, pl.DataFrame)
+    assert df.shape[0] == 2
+    assert df.shape[1] == 2
