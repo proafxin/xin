@@ -1,3 +1,5 @@
+# mypy: disable_error_code="type-arg"
+
 from enum import Enum
 
 from pymongo import AsyncMongoClient

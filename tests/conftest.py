@@ -1,3 +1,5 @@
+# mypy: disable_error_code="type-arg"
+
 import os
 from typing import AsyncGenerator
 
