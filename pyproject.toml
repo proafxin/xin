@@ -7,7 +7,6 @@ requires-python = ">=3.12"
 dependencies = [
     "aiomysql>=0.2.0",
     "asyncpg>=0.29.0",
-    "motor>=3.6.0",
     "mypy>=1.11.2",
     "pymssql>=2.3.1",
     "sqlalchemy>=2.0.35",
@@ -17,6 +16,7 @@ dependencies = [
     "cryptography>=43.0.1",
     "pandas-stubs>=2.2.2.240909",
     "pyarrow>=17.0.0",
+    "pymongo>=4.10.0",
 ]
 license = { file = "LICENSE" }
 authors = [{name="Masum Billal", email="billalmasum93@gmail.com"}]

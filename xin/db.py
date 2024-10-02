@@ -1,5 +1,6 @@
 from enum import Enum
 
+from pymongo import AsyncMongoClient
 from sqlalchemy.engine import Engine, create_engine
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
@@ -60,3 +61,12 @@ def sync_sql_engine(user: str, password: str, port: int, dialect: SQLDatabaseDia
     url = create_connection_string(user=user, password=password, port=port, dialect=dialect, host=host, dbname=dbname)
 
     return create_engine(url=url)
+
+
+async def async_nosql_client(
+    user: str, password: str, port: int, dialect: NoSQLDatabaseDialect, host: str
+) -> AsyncMongoClient:
+    connection_string = f"mongodb://{user}:{password}@{host}:{port}/"
+    client: AsyncMongoClient = AsyncMongoClient(connection_string)
+
+    return client
