@@ -31,11 +31,11 @@ The backend  for interacting with SQL databases is [sqlalchemy](https://www.sqla
 
 `Xin` is async first. It means that if an async driver is available for a database dialect, it will leverage the async driver for better performance when  applicable. SQL Server driver PyMSSQL does not have an async variation yet.
 
-* Motor for Mongodb
-* Asyncpg for PostgreSQL
-* AioMySQL for MySQL
+* [PyMongo](https://pymongo.readthedocs.io/en/stable/index.html) for Mongodb. Currently async support is in beta but since PyMongo is natively supporting async features, it's safer to use it rather than a third party package like [Motor](https://motor.readthedocs.io/en/stable/index.html).
+* [Asyncpg](https://magicstack.github.io/asyncpg/current/) for PostgreSQL.
+* [AioMySQL](https://aiomysql.readthedocs.io/en/stable/) for MySQL.
 
 ## Plan for Future Database Support
 
-* Scylladb
-* Apache Cassandra
+* [Scylladb](https://www.scylladb.com/)
+* [Apache Cassandra](https://cassandra.apache.org/_/index.html)
